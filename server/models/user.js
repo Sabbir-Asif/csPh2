@@ -8,7 +8,9 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    role: { type: String, enum: ['admin', 'stsManager', 'landfilManager', 'unassigned'], default: 'admin' },
+   // Add this line in your userSchema object
+    role: { type: mongoose.Schema.Types.ObjectId, ref: 'Role', required: true },
+
     branch: { type: String },
     pin: { type: String, required: true}
 });
