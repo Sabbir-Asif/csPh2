@@ -19,7 +19,7 @@ app.use(cors());
 app.use("/admin", userRoutes);
 app.use("/auth/login", authRoutes);
 app.use("/auth/", passwordResetRoutes);
-app.use("/create",addUser)
+app.use("/users",addUser)
 
 const port = process.env.PORT || 8080;
 app.listen(port, console.log(`Listening on port ${port}...`));

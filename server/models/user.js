@@ -4,12 +4,13 @@ const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
 const userSchema = new mongoose.Schema({
+    userId: { type: Number, },
     username: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    role: { type: String, enum: ['admin', 'stsManager', 'landfilManager', 'unassigned'], default: 'unassigned' },
+    role: { type: String, enum: ['admin', 'stsManager', 'landfilManager', 'unassigned'], default: 'admin' },
     branch: { type: String },
-    pin: { type: String, required: true }
+    pin: { type: String, required: true}
 });
 
 userSchema.methods.generateAuthToken = function () {
