@@ -11,10 +11,10 @@ router.post("/", async (req, res) => {
         const lowestUserIdUser = await User.findOne({}, {}, { sort: { 'userId': 1 } });
 
         let userId;
-        if (lowestUserIdUser && lowestUserIdUser.userId < 0) {
-            userId = parseInt(lowestUserIdUser.userId) -1;
+        if (lowestUserIdUser && lowestUserIdUser < 0) {
+            userId = lowestUserIdUser.userId -1;
         } else {
-            userId = -1;
+            userId = -1; // If no user found, set userId to 101
         }
 
 

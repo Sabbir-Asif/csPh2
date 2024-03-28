@@ -86,7 +86,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-// GET all available roles
+//GET all available roles
 router.get("/roles", async (req, res) => {
     try {
         // Fetch all unique roles from the users collection

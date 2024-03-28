@@ -4,13 +4,11 @@ const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
 const userSchema = new mongoose.Schema({
-    userId: { type: Number },
+    userId: { type: Number, },
     username: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-   // Add this line in your userSchema object
-    role: { type: mongoose.Schema.Types.ObjectId, ref: 'Role', required: true },
-
+    role: { type: String, enum: ['admin', 'stsManager', 'landfilManager', 'unassigned'], default: 'admin' },
     branch: { type: String },
     pin: { type: String, required: true}
 });

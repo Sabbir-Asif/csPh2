@@ -6,27 +6,23 @@ const userRoutes = require("./routes/signup");
 const authRoutes = require("./routes/login");
 const passwordResetRoutes = require("./routes/passwordReset");
 const addUser = require("./routes/addUser");
-const rbacRoutes = require("./routes/rbac"); // Make sure this is required at the top
-const profileRoutes = require('./routes/profile'); // Adjust the path as necessary
-
-// Use profile routes
+const rbacRoutes = require("./routes/rbac");
 
 const app = express();
 
-// database connection
-connection();
+// Middleware
+app.use(express.json());
+app.use(cors());
 
-// Middlewares
-app.use(cors()); // CORS middleware
-app.use(express.json()); // Apply express.json() as one of the first middlewares
+// Database connection
+connection();
 
 // Routes
 app.use("/admin", userRoutes);
 app.use("/auth/login", authRoutes);
-app.use("/auth/", passwordResetRoutes);
+app.use("/auth", passwordResetRoutes); 
 app.use("/users", addUser);
-app.use("/rbac", rbacRoutes); // Use RBAC routes
-app.use(profileRoutes);
+app.use("/rbac", rbacRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
