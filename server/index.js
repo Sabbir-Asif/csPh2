@@ -7,6 +7,11 @@ const authRoutes = require("./routes/login");
 const passwordResetRoutes = require("./routes/passwordReset");
 const addUser = require("./routes/addUser");
 const rbacRoutes = require("./routes/rbac");
+const vehicleRoutes = require("./routes/dataEntry");
+const stsRoutes = require('./routes/sts');
+const landfillRoutes = require('./routes/landfill');
+const distanceRoutes = require('./routes/distance');
+const testRoute = require('./routes/test');
 
 const app = express();
 
@@ -23,6 +28,10 @@ app.use("/auth/login", authRoutes);
 app.use("/auth", passwordResetRoutes); 
 app.use("/users", addUser);
 app.use("/rbac", rbacRoutes);
+app.use("/vehicles", vehicleRoutes);
+app.use('/api/sts', stsRoutes);
+app.use('/api/landfill', landfillRoutes);
+app.use('/api/distance', distanceRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
