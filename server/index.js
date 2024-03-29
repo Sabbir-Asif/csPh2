@@ -11,7 +11,6 @@ const vehicleRoutes = require("./routes/dataEntry");
 const stsRoutes = require('./routes/sts');
 const landfillRoutes = require('./routes/landfill');
 const distanceRoutes = require('./routes/distance');
-const testRoute = require('./routes/test');
 
 const app = express();
 

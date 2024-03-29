@@ -9,8 +9,12 @@ const STSSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  gpsCoordinates: {
-    type: String,
+  longitude: {
+    type: Number,
+    required: true,
+  },
+  latitude: {
+    type: Number,
     required: true,
   },
 });

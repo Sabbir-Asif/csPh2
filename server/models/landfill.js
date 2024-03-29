@@ -4,12 +4,16 @@ const LandfillSchema = new mongoose.Schema({
   landfillId: {
     type: Number,
     required: true,
+    unique: true // Ensures uniqueness of landfillId
   },
-  gpsCoordinates: {
-    type: String,
+  longitude: {
+    type: Number,
     required: true,
   },
-  // Add other fields such as capacity, operational timespan, etc. as needed.
+  latitude: {
+    type: Number,
+    required: true,
+  }
 });
 
 module.exports = mongoose.model('Landfill', LandfillSchema);
