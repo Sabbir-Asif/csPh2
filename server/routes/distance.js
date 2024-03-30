@@ -1,4 +1,3 @@
-// d7288894-e3e8-4a41-bb1a-a11c65dc1bb8
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -19,7 +18,7 @@ async function getLandfillLocation(landfillId) {
 
 // Function to optimize route using GraphHopper API
 async function optimizeRoute(startCoords, endCoords) {
-  const url = `https://graphhopper.com/api/1/route?point=${startCoords.latitude},${startCoords.longitude}&point=${endCoords.latitude},${endCoords.longitude}&vehicle=car&locale=en&key=0981671d-e144-4a29-9ce0-812ff9084eaa`;
+    const url = `https://graphhopper.com/api/1/route?point=${startCoords.latitude},${startCoords.longitude}&point=${endCoords.latitude},${endCoords.longitude}&vehicle=car&locale=en&key=0981671d-e144-4a29-9ce0-812ff9084eaa`;
     try {
         const response = await axios.get(url);
         const data = response.data;
@@ -41,10 +40,29 @@ router.get('/', async (req, res) => {
         // Optimize route using GraphHopper API
         const optimizedRoute = await optimizeRoute(stsCoords, landfillCoords);
 
-        // Respond with optimized route data
-        res.json(optimizedRoute);
+        // Access the paths from the response data
+        const paths = optimizedRoute.paths;
+        const instructionsArray = [];
+        if (paths && paths.length > 0) {
+            // Iterate over each path to extract the distance, time, and index
+            paths.forEach((path, pathIndex) => {
+                const instructions = path.instructions;
+                if (instructions && instructions.length > 0) {
+                    instructions.forEach((instruction, index) => {
+                        const distance = instruction.distance;
+                        const time = instruction.time;
+                        instructionsArray.push({ index: index + 1, distance, time });
+                    });
+                }
+            });
+            // Respond with the array of JSON objects containing distance, time, and index
+            res.json(instructionsArray);
+        } else {
+            res.status(404).json({ error: 'No paths found in the response' });
+        }
     } catch (error) {
         // Handle errors
+        console.error('Error:', error.message);
         res.status(500).json({ error: 'Internal server error' });
     }
 });

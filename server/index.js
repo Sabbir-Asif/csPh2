@@ -11,6 +11,7 @@ const vehicleRoutes = require("./routes/dataEntry");
 const stsRoutes = require('./routes/sts');
 const landfillRoutes = require('./routes/landfill');
 const distanceRoutes = require('./routes/distance');
+const billRoutes = require('./routes/bill');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/vehicles", vehicleRoutes);
 app.use('/api/sts', stsRoutes);
 app.use('/api/landfill', landfillRoutes);
 app.use('/api/distance', distanceRoutes);
+app.use('/api/bills',billRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
