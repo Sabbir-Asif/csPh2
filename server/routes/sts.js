@@ -6,12 +6,13 @@ const STS = require('../models/sts');
 router.post('/', async (req, res) => {
   try {
     // Extracting data from the request body
-    const { wardNumber, capacity, longitude, latitude } = req.body;
+    const { wardNumber, capacity, locationId, longitude, latitude } = req.body;
 
     // Creating a new STS instance
     const newSTS = new STS({
       wardNumber,
       capacity,
+      locationId,
       longitude,
       latitude
     });

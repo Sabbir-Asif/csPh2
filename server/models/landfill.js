@@ -17,3 +17,4 @@ const LandfillSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Landfill', LandfillSchema);
+

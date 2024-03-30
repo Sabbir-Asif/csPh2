@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
 const BillsSchema = new mongoose.Schema({
-
-   billId: {
-        type: Number,
-        required: true
-      },
+  billId: {
+    type: Number,
+    required: true
+  },
   registrationNumber: {
     type: String,
     required: true
@@ -15,11 +14,11 @@ const BillsSchema = new mongoose.Schema({
     required: true
   },
   arrivalTime: {
-    type: Number,
+    type: Date,
     required: true
   },
   departureTime: {
-    type: Number,
+    type: Date,
     required: true
   },
   distance: {
@@ -40,6 +39,14 @@ const BillsSchema = new mongoose.Schema({
   },
   cost: {
     type: Number,
+    required: true
+  },
+  stsLocationId: {
+    type: String,
+    required: true
+  },
+  landfillLocationId: {
+    type: String,
     required: true
   }
 });

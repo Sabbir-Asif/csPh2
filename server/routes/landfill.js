@@ -6,10 +6,11 @@ const Landfill = require('../models/landfill');
 router.post('/', async (req, res) => {
   try {
     // Extracting data from the request body
-    const { landfillId, longitude, latitude } = req.body;
+    const { locationId, landfillId, longitude, latitude } = req.body;
 
     // Creating a new Landfill instance
     const newLandfill = new Landfill({
+      locationId,
       landfillId,
       longitude,
       latitude
