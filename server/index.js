@@ -16,24 +16,29 @@ const landfillRoutes = require('./routes/landfill');
 //const billRoutes = require('./routes/bill');
 const optimizedRoutes = require('./routes/fleet');
 
+
 const app = express();
 
 // Middleware
 app.use(express.json());
+
 app.use(cors({
     origin: 'http://localhost:8080', 
     credentials: true
 }));
 app.use(cookieParser());
 
+
 // Database connection
 connection();
 
 // Routes
+
 app.use("/signup", userRoutes);
 app.use("/auth", authRoutes);
 app.use('/auth/change-password', changePasswordRoutes);
 //app.use("/auth", passwordResetRoutes); 
+
 app.use("/users", addUser);
 app.use("/rbac", rbacRoutes);
 app.use("/vehicles", vehicleRoutes);
@@ -42,6 +47,7 @@ app.use('/api/landfill', landfillRoutes);
 //app.use('/api/distance', distanceRoutes);
 //app.use('/api/bills',billRoutes);
 app.use('/api/optimized-route',optimizedRoutes);
+
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

@@ -168,3 +168,4 @@ router.delete('/:registrationNumber', async (req, res) => {
 });
 
 module.exports = router;
+

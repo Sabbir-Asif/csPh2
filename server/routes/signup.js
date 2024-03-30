@@ -19,6 +19,7 @@ router.post("/", async (req, res) => {
             userId = parseInt(lowestUserIdUser.userId) -1;
         } else {
             userId = -1; 
+
         }
 
 
