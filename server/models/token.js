@@ -3,9 +3,8 @@ const Schema = mongoose.Schema;
 
 const tokenSchema = new Schema({
 	userId: {
-		type: Schema.Types.ObjectId,
+		type: Number,
 		required: true,
-		ref: "user",
 		unique: true,
 	},
 	token: { type: String, required: true },
